@@ -11,7 +11,7 @@ def factorize(number):
     # check if number is even, if so, set i equal to 2 and print the factors
     if number % 2 == 0:
         i = 2
-        print('{}={}*{}'.format(number, i, number // i))
+        print('{}={}*{}'.format(number, int(number//i), i))
     # otherwise
     else:
         # get square root of number
@@ -20,17 +20,17 @@ def factorize(number):
         for i in range(3, sq, +2):
             # if number is divisible by i, print the factors and break
             if number % i == 0:
-                print('{}={}*{}'.format(number, i, number // i))
+                print('{}={}*{}'.format(number, int(number//i), i))
                 return
             # if number is divisible by square root of number plus i,
             # print the factors and return
             if number % (sq + i) == 0:
-                print('{}={}*{}'.format(number, sq + i, number // (sq + i)))
+                print('{}={}*{}'.format(number, sq + i, int(number // (sq + i))))
                 return
             # if number is divisible by square root of number minus i,
             # print the factors and return
             if number % (sq - i) == 0:
-                print('{}={}*{}'.format(number, sq - i, number // (sq - i)))
+                print('{}={}*{}'.format(number, sq - i, int(number // (sq - i))))
                 return
 
 
