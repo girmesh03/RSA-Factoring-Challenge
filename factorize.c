@@ -1,24 +1,33 @@
 #include "factor.h"
 
 /**
- * factorize - The function factorize a number
- * @buffer: pointer to the address of the number
- * Return: int
+ * factorize - factorize a number from a file in less than 1 second
+ * @buffer: number to factorize
+ * Return: 0 on success
  */
+
+/*print format: num=p*q */
 int factorize(char *buffer)
 {
+	unsigned long int num, p, q, i;
 
-	u_int32_t num;
-	u_int32_t i;
+	num = strtoul(buffer, NULL, 10);
+	if (num % 2 == 0)
+	{
+		p = 2;
+		q = num / 2;
+		printf("%lu=%lu*%lu\n", num, p, q);
+		return (0);
+	}
 
-	num = atoi(buffer);
-
-	for (i = 2; i < num; i++)
+	for (i = 3; i <= num / 2; i += 2)
 	{
 		if (num % i == 0)
 		{
-			printf("%d=%d*%d\n", num, num / i, i);
-			break;
+			p = i;
+			q = num / i;
+			printf("%lu=%lu*%lu\n", num, p, q);
+			return (0);
 		}
 	}
 
