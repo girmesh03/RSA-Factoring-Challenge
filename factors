@@ -1,0 +1,57 @@
+#!/usr/bin/python3
+from sys import argv
+import math
+
+"""This module provides RSA factorization by reading numbers from file"""
+
+
+def factorize(number):
+    """gets the factors of a number"""
+
+    # check if number is even, if so, set i equal to 2 and print the factors
+    if number % 2 == 0:
+        i = 2
+        print('{}={}*{}'.format(number, i, number // i))
+    # otherwise
+    else:
+        # get square root of number
+        sq = int(math.sqrt(number)) + 1
+        # loop through numbers from 3 to square root of number
+        for i in range(3, sq, +2):
+            # if number is divisible by i, print the factors and break
+            if number % i == 0:
+                print('{}={}*{}'.format(number, i, number // i))
+                return
+            # if number is divisible by square root of number plus i,
+            # print the factors and return
+            if number % (sq + i) == 0:
+                print('{}={}*{}'.format(number, sq + i, number // (sq + i)))
+                return
+            # if number is divisible by square root of number minus i,
+            # print the factors and return
+            if number % (sq - i) == 0:
+                print('{}={}*{}'.format(number, sq - i, number // (sq - i)))
+                return
+
+
+def factors(filename):
+
+    # create empty list to work with
+    lst = []
+
+    # try to open file.txt and read it
+    try:
+        with open(filename, encoding='utf-8') as f:
+            for line in f:
+                lst.append(int(line.strip()))
+    # if file doesn't exist, raise exception
+    except FileNotFoundError:
+        print('File not found')
+
+    # loop through list and factorize each number
+    for i in lst:
+        factorize(i)
+
+
+if __name__ == '__main__':
+    factors(argv[1])
