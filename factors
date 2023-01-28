@@ -35,22 +35,12 @@ def factorize(number):
 
 
 def factors(filename):
+    """read_file and prints them out"""
 
-    # create empty list to work with
-    lst = []
-
-    # try to open file.txt and read it
-    try:
-        with open(filename, encoding='utf-8') as f:
-            for line in f:
-                lst.append(int(line.strip()))
-    # if file doesn't exist, raise exception
-    except FileNotFoundError:
-        print('File not found')
-
-    # loop through list and factorize each number
-    for i in lst:
-        factorize(i)
+    with open(filename, encoding="utf-8") as my_file:
+        for i in my_file.readlines():
+            n = int(i)
+            result = factorize(n)
 
 
 if __name__ == '__main__':
